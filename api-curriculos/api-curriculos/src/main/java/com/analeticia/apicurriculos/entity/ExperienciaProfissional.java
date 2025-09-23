@@ -2,10 +2,16 @@ package com.analeticia.apicurriculos.entity;
 
 import java.time.Year;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "Experiencia_profissional")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -44,6 +51,9 @@ public class ExperienciaProfissional {
 	@NotNull(message = "O campo ATUAL TRABALHO é obrigatório")
 	private boolean atualTrabalho;
 	
-	private Candidato candidato_id;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("experiencias")
+	@JoinColumn(name = "candidato_id")
+	private Candidato candidato;
 	
 }
