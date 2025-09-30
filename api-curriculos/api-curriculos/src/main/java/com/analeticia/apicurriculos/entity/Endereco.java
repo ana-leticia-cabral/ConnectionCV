@@ -6,14 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Endereco")
+@Table(name = "endereco")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,16 +25,29 @@ public class Endereco {
 	@Column(name = "id_endereco")
 	private long idEndereco;
 	
-	@NotNull(message = "O campo CEP é obrigatório")
+	@NotBlank(message = "O campo 'cep' é obrigatório")
 	private String cep;
 	
-	private String rua;
+	@NotBlank(message = "O campo 'logradouro' é obrigatório")
+	private String logradouro;
 	
-	private int numero;
+	@NotBlank(message = "O campo 'numero' é obrigatório")
+	private String numero;
 	
 	private String complemento;
 	
-	private String informacoes;
+	@NotBlank(message = "O campo 'bairro' é obrigatório")
+	private String bairro;
+	
+	@NotBlank(message = "O campo 'cidade' é obrigatório")
+	private String cidade;
+	
+	@NotBlank(message = "O campo 'estado' é obrigatório")
+	private String estado;
+	
+	@NotBlank(message = "O campo 'pais' é obrigatório")
+	private String pais;
+	
 	
 	
 }
