@@ -48,6 +48,5 @@ public class Endereco {
 	@NotBlank(message = "O campo 'pais' é obrigatório")
 	private String pais;
 	
-	
-	
+		
 }
