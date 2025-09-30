@@ -78,5 +78,8 @@ public class Candidato {
 	@JsonIgnoreProperties("candidato")
 	private List<ExperienciaProfissional> experiencias = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "candidato")
+	@JsonIgnoreProperties("candidato")
+	private List<Habilidade> habilidades = new ArrayList<>();
 	
 }
