@@ -65,21 +65,42 @@ public class Candidato {
 	@NotBlank
 	private String sobre;
 	
+	
+	/*
+	 * CANDIDATO - possui - ENDEREÇO (N:N)
+	 * Em um mesmo endereço pode haver um ou mais candidatos;
+	 * Um candidato pode ter mais de um endereço.
+	 * 
+	 */
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	// PERSIST -> Salva endereço quando salva candidato
-	// MERGE -> Atualiza endereço quando atualiza candidato
-	// Não deleta endereços compartilhados
+	/* 
+	 * PERSIST -> Salva endereço quando salva candidato
+	 * MERGE -> Atualiza endereço quando atualiza candidato
+	 * Não deleta endereços compartilhados
+	 * 
+	 */
     @JoinTable(name = "endereco_compartilhado", 
                joinColumns = @JoinColumn(name = "candidato_id"), 
                inverseJoinColumns = @JoinColumn(name = "endereco_id"))
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	
+	// CANDIDATO - possui - EXPERIÊNCIA PROFISSIONAL (1:N)
 	@OneToMany(mappedBy = "candidato")
 	@JsonIgnoreProperties("candidato")
 	private List<ExperienciaProfissional> experiencias = new ArrayList<>();
 	
+	
+	// CANDIDATO - possui - HABILIDADE (1:N)
 	@OneToMany(mappedBy = "candidato")
 	@JsonIgnoreProperties("candidato")
 	private List<Habilidade> habilidades = new ArrayList<>();
+	
+	
+	// CANDIDATO - possui - FORMAÇÃO ACADÊMICA (1:N)
+	@OneToMany(mappedBy = "candidato")
+	@JsonIgnoreProperties("candidato")
+	private List<FormacaoAcademica> formacoes = new ArrayList<>();
+	
 	
 }
