@@ -35,35 +35,36 @@ public class Candidato {
 	@Column(name = "id_candidato")
 	private Long idCandidato;
 	
-	@NotBlank(message = "O campo NOME é obrigatório.")
-	@Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres.")
+	@NotBlank(message = "O campo 'nome' é obrigatório.")
 	private String nome;
 	
-	@NotBlank(message = "O campo SOBRENOME é obrigatório")
+	@NotBlank(message = "O campo 'sobrenome' é obrigatório")
 	private String sobrenome;
 	
 	private GeneroCandidato genero;
 	
+	@Column(name = "data_de_nascimento")
 	private LocalDate nascimento;
 	
-	@NotBlank(message = "O campo CPF é obrigatório")
-	@Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF inválido")
+	@NotBlank(message = "O campo 'cpf' é obrigatório")
 	@Column(unique = true)
 	private String cpf;
 	
-	@NotBlank(message = "O campo EMAIL é obrigatório")
-	@Email(message = "Email deve ser válido")
+	@NotBlank(message = "O campo 'email' é obrigatório")
 	@Column(unique = true)
 	private String email;
 	
+	@Column(name = "telefone_fixo")
 	private String telefone;
 	
-	@NotBlank(message = "O campo CELULAR é obrigatório")
-	@Column(unique = true)
+	@NotBlank(message = "O campo 'celular' é obrigatório")
+	@Column(unique = true,
+			name = "numero_de_celular")
 	private String celular;
 	
 	@NotBlank
-	private String sobre;
+	@Column(name = "resumo_profissional")
+	private String resumo;
 	
 	
 	/*
