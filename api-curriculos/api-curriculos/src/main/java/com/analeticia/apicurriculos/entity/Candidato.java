@@ -1,8 +1,10 @@
 package com.analeticia.apicurriculos.entity;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -16,7 +18,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,14 +41,17 @@ public class Candidato {
 	private Long idCandidato;
 	
 	@NotBlank(message = "O campo 'nome' é obrigatório.")
+	@Size(min = 2, max = 50, message = "O campo 'nome' deve ter entre 2 e 50 caracteres.")
 	private String nome;
 	
 	@NotBlank(message = "O campo 'sobrenome' é obrigatório")
+	@Size(min = 2, max = 50, message = "O campo 'sobrenome' deve ter entre 2 e 50 caracteres.")
 	private String sobrenome;
 	
 	private GeneroCandidato genero;
 	
 	@Column(name = "data_de_nascimento")
+	@Past // A data de nascimento deve estar no passado
 	private LocalDate nascimento;
 	
 	@NotBlank(message = "O campo 'cpf' é obrigatório")
@@ -52,6 +60,7 @@ public class Candidato {
 	
 	@NotBlank(message = "O campo 'email' é obrigatório")
 	@Column(unique = true)
+	@Email(message = "Email inválido")
 	private String email;
 	
 	@Column(name = "telefone_fixo")
@@ -64,6 +73,7 @@ public class Candidato {
 	
 	@NotBlank
 	@Column(name = "resumo_profissional")
+	@Size(min = 200, max = 3000, message = "O campo 'resumo_profissional' deve ter entre 200 e 3000 caracteres.")
 	private String resumo;
 	
 	
