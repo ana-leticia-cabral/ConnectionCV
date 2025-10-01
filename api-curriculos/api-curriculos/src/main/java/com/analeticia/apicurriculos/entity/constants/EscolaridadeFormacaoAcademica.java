@@ -1,0 +1,17 @@
+package com.analeticia.apicurriculos.entity.constants;
+
+public enum EscolaridadeFormacaoAcademica {
+
+	FUNDAMENTAL_INCOMPLETO,
+	FUNDAMENTAL_COMPLETO,
+	MEDIO_INCOMPLETO,
+	MEDIO_COMPLETO,
+	TECNICO,
+	SUPERIOR_INCOMPLETO,
+	SUPERIOR_COMPLETO,
+	POS_GRADUACAO,
+	MESTRADO,
+	DOUTORADO,
+	OUTRO
+	
+}

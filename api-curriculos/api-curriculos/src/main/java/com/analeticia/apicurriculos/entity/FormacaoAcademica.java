@@ -2,6 +2,8 @@ package com.analeticia.apicurriculos.entity;
 
 import java.time.LocalDate;
 
+import com.analeticia.apicurriculos.entity.constants.EscolaridadeFormacaoAcademica;
+import com.analeticia.apicurriculos.entity.constants.ModalidadeFormacaoAcademica;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
