@@ -51,10 +51,12 @@ public class DadosPessoais {
 
 	@NotBlank(message = "O campo 'cpf' é obrigatório.")
 	@CPF
+	@Column(unique = true)
 	private String cpf;
 
 	@NotBlank(message = "O campo 'email' é obrigatório.")
 	@Email(message = "Formato de e-mail inválido.")
+	@Column(unique = true)
 	private String email;
 
 	@Column(name = "telefone_fixo")
@@ -62,12 +64,13 @@ public class DadosPessoais {
 	private String telefone;
 
 	@NotBlank(message = "O campo 'numero_celular' é obrigatório.")
-	@Column(name = "numero_celular")
+	@Column(name = "numero_celular", unique = true)
 	@Pattern(regexp = "^\\(?\\d{2}\\)?\\s?9\\d{4}-?\\d{4}$", message = "Celular deve estar no formato (DD) 9XXXX-XXXX")
 	private String celular;
 
 	@NotBlank(message = "O campo 'resumo_profissional' é obrigatório.")
 	@Column(name = "resumo_profissional")
+	@Size(min = 200, max = 3000, message = "O campo 'resumo_profissional' deve conter entre 200 e 3000 caracteres.")
 	private String resumoProfissional;
 
 }
