@@ -11,8 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -83,10 +81,5 @@ public class PerfilPessoal {
 	@Column(name = "resumo_profissional")
 	@Size(min = 200, max = 3000, message = "O campo 'resumo_profissional' deve conter entre 200 e 3000 caracteres.")
 	private String resumoProfissional;
-	
-	// Coluna candidato_id
-	@OneToOne
-	@JoinColumn(name = "candidato_id")
-	private Candidato candidato;
 	
 }
