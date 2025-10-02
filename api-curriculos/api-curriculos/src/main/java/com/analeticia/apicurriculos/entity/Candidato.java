@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// Tabela Candidato
 @Entity
 @Table(name = "candidato")
 @Getter
@@ -30,10 +31,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Candidato {
 
+	// Coluna id_candidato
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")
 	private Long idCandidato;
+	
 	
 	// CANDIDATO - possui - PERFIL PESSOAL (1:N)
 	@OneToMany(mappedBy = "candidato")
