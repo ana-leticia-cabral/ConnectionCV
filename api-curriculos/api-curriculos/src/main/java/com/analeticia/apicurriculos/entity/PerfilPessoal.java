@@ -5,12 +5,14 @@ import java.time.LocalDate;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.analeticia.apicurriculos.entity.constants.GeneroCandidato;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -36,23 +38,24 @@ public class PerfilPessoal {
 	// Coluna nome 
 	@NotBlank(message = "O campo 'nome' é obrigatório.")
 	@Size(min = 2, message = "O campo 'nome' deve ter no mínimo 2 caracteres.")
-	@Pattern(regexp = "^[A-Za-zÀ-ÿ ] +$", message = "O campo 'nome' deve conter apenas letras e espaços.")
+	@Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "O campo 'nome' deve conter apenas letras e espaços.")
 	private String nome;
 
 	@NotBlank(message = "O campo 'sobrenome' é obrigatório.")
 	@Size(min = 2, message = "O campo 'sobrenome' deve ter no mínimo 2 caracteres.")
-	@Pattern(regexp = "^[A-Za-zÀ-ÿ ] +$", message = "O campo 'nome' deve conter apenas letras e espaços.")
+	@Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "O campo 'nome' deve conter apenas letras e espaços.")
 	private String sobrenome;
 
 	// Coluna genero
 	private GeneroCandidato genero;
 
 	// Coluna data_de_nascimento
-	@NotBlank(message = "O campo 'data_de_nascimento' é obrigatório.")
+	@NotNull(message = "O campo 'data_de_nascimento' é obrigatório.")
 	@Past(message = "A data de nascimento deve estar no passado.")
 	@Column(name = "data_de_nascimento")
 	private LocalDate nascimento;
-
+	
+	
 	// Coluna cpf - chave única
 	@NotBlank(message = "O campo 'cpf' é obrigatório.")
 	@CPF
@@ -68,7 +71,7 @@ public class PerfilPessoal {
 	// Coluna telefone_fixo
 	@Column(name = "telefone_fixo")
 	@Pattern(regexp = "^\\(?\\d{2}\\)?\\s?\\d{4}-?\\d{4}$", message = "Telefone fixo deve estar no formato (DD) XXXX-XXXX")
-	private String telefone;
+	private String telefoneFixo;
 
 	// Coluna numero_celular - chave única
 	@NotBlank(message = "O campo 'numero_celular' é obrigatório.")
@@ -81,5 +84,9 @@ public class PerfilPessoal {
 	@Column(name = "resumo_profissional")
 	@Size(min = 200, max = 3000, message = "O campo 'resumo_profissional' deve conter entre 200 e 3000 caracteres.")
 	private String resumoProfissional;
+	
+	@OneToOne(mappedBy = "dadosPessoais")
+	@JsonIgnoreProperties("dadosPessoais")
+	private Candidato candidato;
 	
 }

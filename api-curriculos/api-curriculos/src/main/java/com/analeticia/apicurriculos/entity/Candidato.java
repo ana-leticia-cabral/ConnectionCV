@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -38,10 +39,14 @@ public class Candidato {
 	private Long idCandidato;
 	
 	
-	// CANDIDATO - possui - PERFIL PESSOAL (1:N)
-	@OneToMany(mappedBy = "candidato")
-	@JsonIgnoreProperties("candidato")
-	private List<PerfilPessoal> dadosPessoais = new ArrayList<>();
+	/*
+	 * CANDIDATO - possui - PERFIL_PESSOAL (1:1) 
+	 * PERFIL_PESSOAL - pertence - CANDIDATO (1:1)
+	 */
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dados_pessoais_id", unique = true)
+    @JsonIgnoreProperties("candidato")
+    private PerfilPessoal dadosPessoais;
 
 	/*
 	 * CANDIDATO - possui - ENDEREÇO (N:N) Em um mesmo endereço pode haver um ou
@@ -49,7 +54,7 @@ public class Candidato {
 	 * 
 	 */
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "endereco_compartilhado", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+	@JoinTable(name = "candidato_endereco", joinColumns = @JoinColumn(name = "candidato_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	// CANDIDATO - possui - EXPERIÊNCIA PROFISSIONAL (1:N)
