@@ -32,7 +32,7 @@ public class PerfilPessoal {
 	// Coluna id_dp - chave primária
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_dp")
+	@Column(name = "id_dados_pessoais")
 	private Long id;
     
 	// Coluna nome 
