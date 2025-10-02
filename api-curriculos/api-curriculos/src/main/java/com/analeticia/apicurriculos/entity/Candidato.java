@@ -31,7 +31,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Candidato {
 
-	// Coluna id_candidato
+	// Coluna id_candidato 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")
