@@ -32,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Candidato {
 
-	// Coluna id_candidato 
+	// Coluna id_candidato - chave primária
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_candidato")

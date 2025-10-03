@@ -33,7 +33,7 @@ public class PerfilPessoal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_dados_pessoais")
-	private Long id;
+	private Long idDadosPessoais;
     
 	// Coluna nome 
 	@NotBlank(message = "O campo 'nome' é obrigatório.")
